@@ -10,7 +10,6 @@ from rllm.rewards import RewardConfig, RewardFn, RewardInput, RewardOutput, Rewa
 from rllm.rewards.math_utils.utils import extract_answer, grade_answer_sympy, grade_answer_mathd
 
 from rllm.system_prompts import ORM_PROMPT
-from rllm.utils import call_gemini_llm, call_oai_rm_llm
 import json 
 
 ORM_USER_TEMPLATE = """
