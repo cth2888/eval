@@ -105,8 +105,10 @@ def main(config):
         if 'responses' not in dataset.columns:
             dataset['responses'] = [[] for _ in range(len(dataset))]
         
-        score_uid_list_temp = []
+        n_samples = config.data.n_samples
+        data_score_list = [[] for _ in range(n_samples+1)]
         import json
+        from utils.utils import save_to_path
         for batch_idx in tqdm(range(num_batch)):
             print(f'[{batch_idx+1}/{num_batch}] Start to process.')
             batch_start = batch_idx * config_batch_size
@@ -151,6 +153,7 @@ def main(config):
             # Generate all samples at once
             print(len(data.batch['input_ids']))
             output = wg.generate_sequences(data)
+            print('7777',output)
             # Remove dummy data
             output = output[:real_batch_size]
             output_text = tokenizer.batch_decode(output.batch['input_ids'][:, -config.rollout.response_length:],
@@ -174,7 +177,6 @@ def main(config):
                 reward_fn = select_reward_fn(data_source)
                 uid = data['uid']
                 ground_truth = data['reward_model']['ground_truth']
-                print('77',ground_truth)
                 score_lst = []
                 for r in response_lst:
                     try:
@@ -184,12 +186,13 @@ def main(config):
                         score = reward_fn(data_source, r, ground_truth)
                         score_lst.append(score)
                 
-                score_uid_dict = {uid:score_lst}
-                score_uid_list_temp.append(score_uid_dict)
+                index = int(np.sum(score_lst))
+                data_score_list[index].append(data)
                 
             dataset.to_parquet(config.data.output_path)
-            with open(config.data.temp_output_path, 'w') as f:
-                json.dump(score_uid_list_temp, f)
+            for i in range(n_samples+1):
+                save_to_path(data_score_list[i], os.path.join(output_dir, f'score_{i}.parquet'))
+                save_to_path(data_score_list[i], os.path.join(output_dir, f'score_{i}.json'))
             
         end_time = time.time()
         time_cost = end_time - start_time

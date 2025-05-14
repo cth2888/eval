@@ -9,8 +9,8 @@ BASE_PATHS="/root/cth/cth/eval"
 MODEL_PATHS=("/root/cth/cth/models/deepscaler_high_entropy")
 DATATYPES=("deepscaler_rest") #"amc" "minerva")
 OUTPUT_DIR="${BASE_PATHS}/output"
-N_PASSES=4
-MAX_LENGTH=16384
+N_PASSES=1
+MAX_LENGTH=20
 TP_SIZE=1
 
 # Create output directory if it doesn't exist
@@ -45,7 +45,7 @@ for DATATYPE in "${DATATYPES[@]}"; do
             data.output_path=${OUTPUT_PATH}/dataset_${DATATYPE}.parquet \
             data.temp_output_path=${OUTPUT_PATH}/dataset_${DATATYPE}_temp.json \
             data.n_samples=${N_PASSES} \
-            data.batch_size=512 \
+            data.batch_size=4 \
             model.path=${MODEL_PATH} \
             rollout.temperature=0.6 \
             rollout.response_length=${MAX_LENGTH} \
