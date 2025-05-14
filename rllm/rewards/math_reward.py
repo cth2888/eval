@@ -77,31 +77,6 @@ class RewardMathFn(RewardFn):
                 return RewardOutput(reward=reward, is_correct=True)
 
         # If latex heuristics fail and ORM is enabled, use LLM as ORM to evaluate correctness
-        if self.config.use_math_orm:
-            
-            for ground_truth in processed_ground_truths:
-                
-                try:
-                    orm_response = call_gemini_llm(
-                        system_prompt=ORM_PROMPT,
-                        prompt=ORM_USER_TEMPLATE.format(problem=problem, answer_1=model_answer, answer_2=ground_truth),
-                        temperature=0.0,
-                    )
-
-                    if "[[YES]]" in orm_response:
-                        return RewardOutput(reward=self.config.correct_reward, is_correct=True)
-                except Exception as e:
-                    print ("Error calling Gemini ORM, trying OAI RM")
-                    orm_response = call_oai_rm_llm(
-                        system_prompt=ORM_PROMPT,
-                        prompt=ORM_USER_TEMPLATE.format(problem=problem, answer_1=model_answer, answer_2=ground_truth),
-                        temperature=0.0,
-                        model_id=OAI_RM_MODEL,
-                    )
-                    
-                    if "[[YES]]" in orm_response:
-                        return RewardOutput(reward=self.config.correct_reward, is_correct=True)
-                    continue
                 
         return RewardOutput(reward=self.config.incorrect_reward, is_correct=False)
 

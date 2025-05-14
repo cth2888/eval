@@ -173,6 +173,8 @@ def main(config):
                 reward_fn = select_reward_fn(data_source)
                 uid = data['uid']
                 ground_truth = data['reward_model']['ground_truth']
+                print('77',ground_truth)
+                score_lst = []
                 for r in response_lst:
                     try:
                         score = reward_fn(r, ground_truth)

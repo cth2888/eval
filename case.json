@@ -2,23 +2,18 @@
     "data_source": "",
     "prompt": [
         {
-            "content": "Given a segment \\( AB \\) of fixed length 3 with endpoints moving on the parabola \\( y^2 = x \\), find the shortest distance from the midpoint \\( M \\) of segment \\( AB \\) to the y-axis. Let's think step by step and output the final answer within \\boxed{}.",
+            "content": "The operation $\\otimes$ is defined for all nonzero numbers by $a \\otimes b = \\frac{a^{2}}{b}$. Determine $[(1 \\otimes 2) \\otimes 3] - [1 \\otimes (2 \\otimes 3)]$. Let's think step by step and output the final answer within \\boxed{}.",
             "role": "user"
         }
     ],
     "ability": "math",
     "reward_model": {
-        "ground_truth": "\\frac{5}{4}",
+        "ground_truth": "-\\frac{2}{3}",
         "style": "rule"
     },
     "extra_info": {
-        "index": 10240,
+        "index": 0,
         "split": "train"
     },
-    "responses": [
-        "Okay, so I have this problem where there's a segment AB of fixed length 3, and the endpoints A and B are moving on the parabola y² = x. I need to find the shortest distance from the midpoint M of segment AB to the y-axis. Hmm, let me try to break this down step by step.\n\nFirst, I know that the parabola y² = x is a standard right-opening parabola with vertex at the origin. So any point on this parabola can be represented as (t², t) for some parameter t. That might come in handy because if A and B are moving on this parabola, I can assign coordinates to them using parameters.\n\nLet me denote point A as (a², a) and point B as (b², b), where a and b are real numbers. So, the coordinates of A and B are (a², a) and (b², b) respectively.\n\n",
-        "Okay, so I have this problem where there's a segment AB of fixed length 3, and the endpoints A and B are moving on the parabola y² = x. I need to find the shortest distance from the midpoint M of AB to the y-axis. Hmm, let me try to figure this out step by step.\n\nFirst, let me visualize the parabola y² = x. It's a right-opening parabola with vertex at the origin. The points on this parabola can be represented as (t², t) where t is a parameter. So, maybe I can let point A be (a², a) and point B be (b², b), where a and b are real numbers.\n\nGiven that AB has a fixed length of 3, I can use the distance formula between points A and B. The distance between A(a², a) and B(b², b) is sqrt[(b² - a²)",
-        "Okay, so I need to find the shortest distance from the midpoint M of segment AB to the y-axis. The segment AB has a fixed length of 3, and both endpoints A and B are moving on the parabola y² = x. Hmm, let me break this down step by step.\n\nFirst, let me visualize the problem. We have a parabola y² = x, which opens to the right. Points A and B are moving along this parabola, and the distance between them is always 3 units. The midpoint M of AB will have coordinates that are the average of the coordinates of A and B. Since we need the distance from M to the y-axis, that should just be the x-coordinate of M, right? Because the distance from a point (x, y) to the y-axis is |x|.\n\nSo, my goal is to minimize the x-coordinate of M. To do that, I need to express the coordinates of M in",
-        "Okay, so I have this problem here: Given a segment AB of fixed length 3, with endpoints moving on the parabola y² = x. I need to find the shortest distance from the midpoint M of segment AB to the y-axis. Hmm, let me try to visualize this.\n\nFirst, the parabola y² = x is a right-opening parabola with vertex at the origin. So, any point on this parabola can be represented as (t², t) where t is a real number. That might come in handy later.\n\nNow, points A and B are moving on this parabola, and the distance between A and B is always 3 units. The midpoint M of AB will have coordinates that are the average of the coordinates of A and B. So, if A is (t², t) and B is (s², s), then M would be ((t² + s²)/2, (t + s"
-    ]
+    "uid": "710d4826-ba5a-4d1d-91f8-dc938633fff5"
 }
