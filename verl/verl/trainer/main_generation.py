@@ -106,6 +106,7 @@ def main(config):
             dataset['responses'] = [[] for _ in range(len(dataset))]
         
         score_uid_list_temp = []
+        import json
         for batch_idx in tqdm(range(num_batch)):
             print(f'[{batch_idx+1}/{num_batch}] Start to process.')
             batch_start = batch_idx * config_batch_size
