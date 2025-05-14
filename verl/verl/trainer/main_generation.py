@@ -153,9 +153,15 @@ def main(config):
             # Generate all samples at once
             print(len(data.batch['input_ids']))
             output = wg.generate_sequences(data)
-            print('7777',output)
+            print('output', output)
+
+
             # Remove dummy data
             output = output[:real_batch_size]
+            #old_log_prob = wg.compute_log_prob(output)
+            ##print('old_log_prob', old_log_prob)
+            #print('output22', output)
+
             output_text = tokenizer.batch_decode(output.batch['input_ids'][:, -config.rollout.response_length:],
                                                skip_special_tokens=False)
 
@@ -272,6 +278,10 @@ def main(config):
     import json
     with open(results_path, 'w') as f:
         json.dump(score_uid_list, f)
+
+
+
+
 
 # Add the select_reward_fn from main_eval.py
 def select_reward_fn(data_source):
