@@ -7,10 +7,10 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 # Default values
 BASE_PATHS="/root/cth/cth/eval"
 MODEL_PATHS=("/root/cth/cth/models/deepscaler_high_entropy")
-DATATYPES=("deepscaler_rest") #"amc" "minerva")
-OUTPUT_DIR="${BASE_PATHS}/output"
-N_PASSES=2
-MAX_LENGTH=16384
+DATATYPES=("openr1") #"amc" "minerva")
+OUTPUT_DIR="${BASE_PATHS}/openr1/output"
+N_PASSES=8
+MAX_LENGTH=8192
 TP_SIZE=1
 
 # Create output directory if it doesn't exist
@@ -41,11 +41,11 @@ for DATATYPE in "${DATATYPES[@]}"; do
         python3 -m verl.trainer.main_generation \
             trainer.nnodes=1 \
             trainer.n_gpus_per_node=4 \
-            data.path=data/${DATATYPE}.parquet \
+            data.path=openr1/${DATATYPE}.parquet \
             data.output_path=${OUTPUT_PATH}/dataset_${DATATYPE}.parquet \
             data.temp_output_path=${OUTPUT_PATH}/dataset_${DATATYPE}_temp.json \
             data.n_samples=${N_PASSES} \
-            data.batch_size=1024 \
+            data.batch_size=2048 \
             model.path=${MODEL_PATH} \
             rollout.temperature=0.6 \
             rollout.response_length=${MAX_LENGTH} \

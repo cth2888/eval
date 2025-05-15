@@ -153,8 +153,6 @@ def main(config):
             # Generate all samples at once
             print(len(data.batch['input_ids']))
             output = wg.generate_sequences(data)
-            print('output', output)
-
 
             # Remove dummy data
             output = output[:real_batch_size]
@@ -289,8 +287,8 @@ def select_reward_fn(data_source):
         from verl.utils.reward_score import math
         return math.compute_score
     else:
-        from rllm.rewards.rl_reward import rllm_reward_fn
-        return rllm_reward_fn
+        from rllm.rewards.rl_reward import reward_fn
+        return reward_fn
 
 if __name__ == '__main__':
     main()

@@ -14,19 +14,16 @@ touch .gitignore
 *.log
 
 # 可选：忽略某个模型保存目录（例如 models/）
-models/
-checkpoints/
 temp.py
 output/
 outputs/
 rllm.egg-info/
-utils/
-util
-utils
-**/case.json
-**/test.sh
+case.json
 test.sh
 
 __pycache__/
 **/__pycache__/
 *.py[cod]
+
+deepscaler/
+openr1/
