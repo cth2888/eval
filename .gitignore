@@ -24,3 +24,9 @@ utils/
 util
 utils
 **/case.json
+**/test.sh
+test.sh
+
+__pycache__/
+**/__pycache__/
+*.py[cod]
