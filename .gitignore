@@ -1,0 +1,32 @@
+touch .gitignore
+
+# 忽略模型文件（常见扩展名）
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.h5
+*.onnx
+*.pb
+*.pyc
+
+# 忽略所有 .log 文件
+*.log
+
+# 可选：忽略某个模型保存目录（例如 models/）
+models/
+checkpoints/
+temp.py
+output/
+outputs/
+rllm.egg-info/
+utils/
+util
+utils
+**/case.json
+**/test.sh
+test.sh
+
+__pycache__/
+**/__pycache__/
+*.py[cod]
